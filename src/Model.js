@@ -3,28 +3,37 @@ import jQuery from 'jquery';
 class Model {
 
 	get() {
-
+		
 	}	
 
 	post(request) {
 
-		let thai = request.search(/thai/ig);
-		let korean = request.search(/korean/ig);
-		let steak = request.search(/steak/ig);
+		function checkRequest(request) {
 
-		if (thai > 0) {
+			let thai = request.search(/thai/ig);
+			let korean = request.search(/korean/ig);
+			let steak = request.search(/steak/ig);
+			let surprise = request.search(/surprise/ig);
+
+			if (thai > 0) {
 				sendRequest("Thai");
-			}
-		if (korean > 0) {
+			} else if (korean > 0) {
 				sendRequest("Korean");
-			}		
-		if (steak > 0) {
+			}	else if (steak > 0) {
 				sendRequest("Steak");
+			} else if (surprise >0 ) {
+				sendRequest("Surprise");
+			} else {
+				jQuery('#instruction').html("I don't know what you want, please do something else");
 			}
+
+		}
 
 		function sendRequest(argument) {
 			console.log(argument);
 		}	
+
+		checkRequest(request);
 
 	}
 

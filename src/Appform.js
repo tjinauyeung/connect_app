@@ -4,6 +4,11 @@ import model from './Model';
 class Appform extends React.Component {
 
   
+  onDone() {
+  	console.log("I'm done.");
+  }
+
+
 	submitRequest(event) {
 		event.preventDefault();
 
@@ -26,8 +31,8 @@ class Appform extends React.Component {
 
     return (
         <form onSubmit={this.submitRequest.bind(this)}>
-        	<p>What would you like to do?</p>
-        	<input style={input} ref="request" placeholder="I'm in the mood for thai" />
+        	<p id="instruction">What would you like to do?</p>
+        	<input id="userinput" style={input} ref="request" placeholder="" />
         </form>
     );
   }

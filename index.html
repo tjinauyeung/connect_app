@@ -6,5 +6,214 @@
   <body>
     <div id="root"></div>
     <script src="/static/bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+!function($){
+
+	"use strict";
+
+	var Typed = function(el, options){
+
+		this.el = $(el);
+		this.options = $.extend({}, $.fn.typed.defaults, options);
+		this.text = this.el.text();
+		this.typeSpeed = this.options.typeSpeed;
+		this.startDelay = this.options.startDelay;
+		this.backDelay = this.options.backDelay;
+		this.strings = this.options.strings;
+		this.strPos = 0;
+		this.arrayPos = 0;
+		this.string = this.strings[this.arrayPos];
+		this.stopNum = 0;
+		this.loop = this.options.loop;
+		this.loopCount = this.options.loopCount;
+		this.curLoop = 1;
+		if (this.loop === false){
+			this.stopArray = this.strings.length-1;
+		}
+		else{
+			this.stopArray = this.strings.length;
+		}
+		this.build();
+	}
+
+		Typed.prototype =  {
+
+			constructor: Typed
+
+			, init: function(){
+				var self  = this;
+			  	setTimeout(function() {
+			  		// Start typing
+					self.typewrite(self.string, self.strPos)
+			  	}, self.startDelay);
+			}
+
+			, build: function(){
+				// Insert cursor
+				//this.el.after("<span id=\"typed-cursor\">|</span>");
+				this.init();
+			}
+
+			// pass current string state to each function
+			, typewrite: function(curString, curStrPos){
+
+				// varying values for setTimeout during typing
+				// can't be global since number changes each time loop is executed
+				var humanize = Math.round(Math.random() * (100 - 30)) + this.typeSpeed;
+				var self = this;
+
+				// ------------- optional ------------- //
+				// backpaces a certain string faster
+				// ------------------------------------ //
+				// if (self.arrayPos == 1){
+				// 	self.backDelay = 50;
+				// }
+				// else{ self.backDelay = 500; }
+
+				// containg entire typing function in a timeout
+				setTimeout(function() {
+
+					// make sure array position is less than array length
+					if (self.arrayPos < self.strings.length){
+
+						// start typing each new char into existing string
+						// curString is function arg
+                        // CUSTOM PLACEHOLDER TEXT
+						self.el.attr("placeholder", curString.substr(0, curStrPos));
+
+						// check if current character number is the string's length
+						// and if the current array position is less than the stopping point
+						// if so, backspace after backDelay setting
+						if (curStrPos > curString.length && self.arrayPos < self.stopArray){
+							clearTimeout(clear);
+							var clear = setTimeout(function(){
+								self.backspace(curString, curStrPos);
+							}, self.backDelay);
+						}
+
+						// else, keep typing
+						else{
+							// add characters one by one
+							curStrPos++;
+							// loop the function
+							self.typewrite(curString, curStrPos);
+							// if the array position is at the stopping position
+							// finish code, on to next task
+							if (self.loop === false){
+								if (self.arrayPos === self.stopArray && curStrPos === curString.length){
+									// animation that occurs on the last typed string
+									// fires callback function
+									var clear = self.options.callback();
+									clearTimeout(clear);
+								}
+							}
+						}
+					}
+					// if the array position is greater than array length
+					// and looping is active, reset array pos and start over.
+					else if (self.loop === true && self.loopCount === false){
+						self.arrayPos = 0;
+						self.init();
+					}
+						else if(self.loopCount !== false && self.curLoop < self.loopCount){
+							self.arrayPos = 0;
+							self.curLoop = self.curLoop+1;
+							self.init();
+						}
+
+				// humanized value for typing
+				}, humanize);
+
+			}
+
+			, backspace: function(curString, curStrPos){
+
+				// varying values for setTimeout during typing
+				// can't be global since number changes each time loop is executed
+				var humanize = Math.round(Math.random() * (100 - 30)) + this.typeSpeed;
+				var self = this;
+
+				setTimeout(function() {
+
+					// ----- this part is optional ----- //
+					// check string array position
+					// on the first string, only delete one word
+					// the stopNum actually represents the amount of chars to
+					// keep in the current string. In my case it's 14.
+					// if (self.arrayPos == 1){
+					//	self.stopNum = 14;
+					// }
+					//every other time, delete the whole typed string
+					// else{
+					//	self.stopNum = 0;
+					// }
+
+					// ----- continue important stuff ----- //
+					// replace text with current text + typed characters
+                    // CUSTOM PLACEHOLDER TEXT
+					self.el.attr("placeholder", curString.substr(0, curStrPos));
+
+					// if the number (id of character in current string) is
+					// less than the stop number, keep going
+					if (curStrPos > self.stopNum){
+						// subtract characters one by one
+						curStrPos--;
+						// loop the function
+						self.backspace(curString, curStrPos);
+					}
+					// if the stop number has been reached, increase
+					// array position to next string
+					else if (curStrPos <= self.stopNum){
+						clearTimeout(clear);
+						var clear = self.arrayPos = self.arrayPos+1;
+						// must pass new array position in this instance
+						// instead of using global arrayPos
+						self.typewrite(self.strings[self.arrayPos], curStrPos);
+					}
+
+				// humanized value for typing
+				}, humanize);
+
+			}
+
+		}
+
+	$.fn.typed = function (option) {
+	    return this.each(function () {
+	      var $this = $(this)
+	        , data = $this.data('typed')
+	        , options = typeof option == 'object' && option
+	      if (!data) $this.data('typed', (data = new Typed(this, options)))
+	      if (typeof option == 'string') data[option]()
+	    });
+	}
+
+	$.fn.typed.defaults = {
+		strings: ["These are the default values...", "You know what you should do?", "Use your own!", "Have a great day!"],
+		// typing and backspacing speed
+		typeSpeed: 0,
+		// time before typing starts
+		startDelay: 0,
+		// time before backspacing
+		backDelay: 500,
+		// loop
+		loop: true,
+		// false = infinite
+		loopCount: false,
+		// ending callback function
+		callback: function(){ null }
+	}
+
+
+}(window.jQuery);
+    </script>
+		<script>
+			$(document).ready(function(){
+				$('#userinput').typed({
+        	strings: ["I'm in the mood for Thai", "What about Korean?", "Give me a bloody steak!", "How about some nice Foi Gras?", "Surprise me!"],
+        	typeSpeed: 0 });
+			})
+		</script>
   </body>
 </html>
