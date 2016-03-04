@@ -1,5 +1,5 @@
 import React from 'react';
-import Connect_app from './Connect_app';
+import FollowApp from './FollowApp';
 
 class App extends React.Component {
     render() {
