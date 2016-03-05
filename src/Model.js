@@ -13,16 +13,17 @@ class Model {
 			let thai = request.search(/thai/ig);
 			let korean = request.search(/korean/ig);
 			let steak = request.search(/steak/ig);
+			let spaghetti = request.search(/spaghetti/ig);
 			let surprise = request.search(/surprise/ig);
 
 			if (thai >= 0) {
-				sendRequest("Thai", onDone);
+				sendRequest("thai", onDone);
 			} else if (korean >= 0) {
-				sendRequest("Korean", onDone);
+				sendRequest("korean", onDone);
 			}	else if (steak >= 0) {
-				sendRequest("Steak", onDone);
+				sendRequest("steak", onDone);
 			} else if (surprise >= 0 ) {
-				sendRequest("Surprise", onDone);
+				sendRequest("surprise", onDone);
 			} else {
 				jQuery('#requestnotfound').html(
 					"Can't help you with that.. Try something else!");
@@ -30,8 +31,8 @@ class Model {
 
 		}
 
-		function sendRequest(argument, onDone) {
-			onDone(argument);
+		function sendRequest(tag, onDone) {
+			onDone(tag);
 		}	
 
 		checkRequest(request, onDone);

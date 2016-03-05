@@ -10,10 +10,12 @@ class Search extends React.Component {
 		let component = this
 		let request = this.refs.request.value;
 
-		function onDone(){
+		function onDone(tag){
 			component.props.onChange();
 			component.props.onSave(request);
+			component.props.onRequest(tag);
 		}
+	
 
 		model.post(request, onDone);
 		this.refs.request.value = "";

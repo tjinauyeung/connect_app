@@ -3,6 +3,7 @@ import Search from './Search';
 import About from './About';
 import SearchButton from './SearchButton';
 import RestaurantList from './RestaurantList';
+import jQuery from 'jquery';
 
 
 class FollowApp extends React.Component {
@@ -10,8 +11,21 @@ class FollowApp extends React.Component {
     super();
     this.state = {
         request_received: false,
-        request: ""
+        request: "",
+        restaurants: []
     }
+  }
+
+  getList(tag) {
+    let tagId = tag
+    let component = this;
+    
+    jQuery.getJSON("http://damp-everglades-70230.herokuapp.com/tags/" + tagId, function(data){
+      component.setState({
+        restaurants: data.restaurant
+      });
+      console.log(component.state.restaurants);
+    });
   }
 
   gotRequest(){
@@ -64,19 +78,19 @@ class FollowApp extends React.Component {
           <img style={logo} src="http://www.tjinauyeung.nl/logodark.png" />
           <div style={text_center}>
             <h2>What mood are you in right now?</h2>
-        	  <Search onChange={this.gotRequest.bind(this)} onSave={this.saveRequest.bind(this)} />
+        	  <Search onChange={this.gotRequest.bind(this)} onSave={this.saveRequest.bind(this)} onRequest={this.getList.bind(this)}/>
             <h4 style={notfoundmessage} id="requestnotfound"><span style={invisible}>.</span></h4>
           </div>
         </div>
       );
     
     //show listings after request has been received
-    } else {
+    } else if (this.state.restaurants != []) {
       return (
         <div>
           <About />
           <a href="/"><SearchButton search={this.gotRequest.bind(this)} /></a>
-          <RestaurantList request={this.state.request} />
+          <RestaurantList restaurants={this.state.restaurants} request={this.state.request} />
         </div>
       );
     }

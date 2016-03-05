@@ -1,28 +1,16 @@
 import React from 'react';
 import Restaurant from './Restaurant';
 import { Link } from 'react-router';
-import jQuery from 'jquery';
 
 class RestaurantList extends React.Component {
 		constructor(){
 				super();
-
-				this.state = {
-					restaurants: []
-				}
-		}
-
-		reload(event) {
-		  let component = this;
-		  jQuery.getJSON("http://damp-everglades-70230.herokuapp.com/restaurants/", function(data){
-		    component.setState({
-		      restaurants: data.restaurants
-		    });
-		  });
 		}
 
 		componentDidMount() {
-		  this.reload();
+			this.setState({
+				restaurants: this.props.restaurants
+			})
 		}
 
 		renderRestaurants(restaurant){
@@ -70,7 +58,7 @@ class RestaurantList extends React.Component {
 						<div style={container}>
 							<div style={content}>
 								<div style={text_container}><span style={text_center}>Check out these places & meet up</span></div>
-								{this.state.restaurants.map(this.renderRestaurants.bind(this), this)}
+								{this.props.restaurants.map(this.renderRestaurants.bind(this), this)}
 							</div>
 						</div>
 				);

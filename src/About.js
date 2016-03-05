@@ -86,8 +86,7 @@ class About extends React.Component {
 					<div style={content}>
 						<h1>Our mission</h1>
 						<h2 style={mission}>
-							We want to lower the barrier for people to meet. 
-							By using food as a central hub.   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda doloribus odio in, corporis quod illum quis sit quae hic recusandae cumque deleniti error laborum. Magnam aut odio, vero accusamus cupiditate.
+							We're Follow. We're here to connect people. 
 						</h2>
 					</div>
 					<h2 onClick={this.toggleAboutPage.bind(this)} style={close}>Close</h2>
