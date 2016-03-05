@@ -53,8 +53,9 @@ class About extends React.Component {
 		}
 		let logo = {
       position: 'fixed',
-      top: '50px',
-      left: '300px',
+      top: '30px',
+      left: '35%',
+      height: '250px',
       zIndex: '4'
     }
     let mission = {

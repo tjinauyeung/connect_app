@@ -20,7 +20,7 @@ class FollowApp extends React.Component {
     let tagId = tag
     let component = this;
     
-    jQuery.getJSON("http://damp-everglades-70230.herokuapp.com/tags/" + tagId, function(data){
+    jQuery.getJSON("https://still-retreat-87985.herokuapp.com/tags/" + tagId, function(data){
       component.setState({
         restaurants: data.restaurant
       });
@@ -63,8 +63,9 @@ class FollowApp extends React.Component {
     }
     let logo = {
       position: 'fixed',
-      top: '50px',
-      left: '300px',
+      top: '30px',
+      left: '35%',
+      height: '250px',
       zIndex: '-1'
     }
     //end styling 
