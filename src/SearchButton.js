@@ -21,7 +21,7 @@ class SearchButton extends React.Component {
 		}
 
 		return (
-					<a href="/"><img style={searchbtn} src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_arrow_back_48px-128.png"/></a>);
+					<img style={searchbtn} src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_arrow_back_48px-128.png"/>);
 	}
 }
 

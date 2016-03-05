@@ -73,7 +73,6 @@ class Restaurant extends React.Component {
     //end styling
 
     return (
-      <Link to={ '/Meetup/' + this.state.id }>
         <div style={card}>
           <ul style={list}>
             <li><h2 style={title}>{this.state.name}</h2></li>
@@ -90,7 +89,6 @@ class Restaurant extends React.Component {
             </ul>
           </ul>
         </div>
-      </Link>
     );
   }
 }

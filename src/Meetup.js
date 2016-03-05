@@ -12,6 +12,7 @@ class Meetup extends React.Component {
 		return (
 			<div>
 				<About />
+				<SearchButton />
 				<h1>Here people can meet up</h1>
 				<Link to="/">Click here </Link>
 			</div>

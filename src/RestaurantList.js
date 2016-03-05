@@ -14,7 +14,7 @@ class RestaurantList extends React.Component {
 
 		reload(event) {
 		  let component = this;
-		  jQuery.getJSON("http://mighty-mountain-56231.herokuapp.com/restaurants", function(data){
+		  jQuery.getJSON("http://damp-everglades-70230.herokuapp.com/restaurants/", function(data){
 		    component.setState({
 		      restaurants: data.restaurants
 		    });
@@ -39,6 +39,7 @@ class RestaurantList extends React.Component {
 					photo={restaurant.photo} 
 					logo={restaurant.logo}
 				/>
+
 			);
 		}
 
@@ -49,19 +50,26 @@ class RestaurantList extends React.Component {
 
 			let content = {
 				maxWidth: '1000px',
-				margin: 'auto'
+				margin: 'auto',
+			}
+
+			let text_container = {
+				textAlign: 'center',
+				marginTop: '34px',
+				marginBottom: '42px',
 			}
 
 			let text_center = {
-				textAlign: 'center',
-				marginTop: '40px',
-				marginBottom: '40px'
+				fontSize: '36px',
+				fontWeight: 'bold',
+				paddingBottom: '5px',
+				borderBottom: '5px solid black'
 			}
 
 				return (
 						<div style={container}>
 							<div style={content}>
-								<h2 style={text_center}>{this.props.request}</h2>
+								<div style={text_container}><span style={text_center}>Check out these places & meet up</span></div>
 								{this.state.restaurants.map(this.renderRestaurants.bind(this), this)}
 							</div>
 						</div>

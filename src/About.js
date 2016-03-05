@@ -31,11 +31,11 @@ class About extends React.Component {
 			left: '0',
 			right: '0',
 			bottom: '0',
+			zIndex: '4',
 			background: '-webkit-linear-gradient(top, #e06471 0%,#ff7c7c 100%)',
 			display: 'flex',
 			height: '100vh',
 			width: '100vw',
-			zIndex: 2,
 			justifyContent: 'center',
 			alignItems: 'center'
 		}
@@ -51,6 +51,23 @@ class About extends React.Component {
 			color: 'white',
 			padding: '20%'
 		}
+		let logo = {
+      position: 'fixed',
+      top: '50px',
+      left: '300px',
+      zIndex: '4'
+    }
+    let mission = {
+    	lineHeight: '35px',
+    	fontWeight: 'normal'
+    }
+    let footer = {
+    	zIndex: '12',
+    	position: 'fixed',
+    	bottom: '20px',
+    	left: '40px',
+    	color: '#fff'
+    }
 		//end styling
 
 
@@ -68,12 +85,16 @@ class About extends React.Component {
 				<div style={wrapper}>
 					<div style={content}>
 						<h1>Our mission</h1>
-						<h2>
+						<h2 style={mission}>
 							We want to lower the barrier for people to meet. 
-							By using food as a central hub.
+							By using food as a central hub.   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda doloribus odio in, corporis quod illum quis sit quae hic recusandae cumque deleniti error laborum. Magnam aut odio, vero accusamus cupiditate.
 						</h2>
 					</div>
 					<h2 onClick={this.toggleAboutPage.bind(this)} style={close}>Close</h2>
+					<img style={logo} src="http://www.tjinauyeung.nl/logolight.png" />
+					<footer style={footer}>
+            <h4>A Hackathon project by Matt & Tjin</h4>
+          </footer>
 				</div>
 			);
 		}

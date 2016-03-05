@@ -1,6 +1,7 @@
 import React from 'react';
 import model from './Model';
 import { Link } from 'react-router';
+import Loader from 'react-loaders';
 
 class Search extends React.Component {
 	submitRequest(event) {

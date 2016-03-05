@@ -47,6 +47,12 @@ class FollowApp extends React.Component {
       fontFamily: 'helvetica',
       fontWeight: '100'
     }
+    let logo = {
+      position: 'fixed',
+      top: '50px',
+      left: '300px',
+      zIndex: '-1'
+    }
     //end styling 
 
 
@@ -55,6 +61,7 @@ class FollowApp extends React.Component {
       return (
         <div style={container}>
           <About />
+          <img style={logo} src="http://www.tjinauyeung.nl/logodark.png" />
           <div style={text_center}>
             <h2>What mood are you in right now?</h2>
         	  <Search onChange={this.gotRequest.bind(this)} onSave={this.saveRequest.bind(this)} />
@@ -68,7 +75,7 @@ class FollowApp extends React.Component {
       return (
         <div>
           <About />
-          <SearchButton search={this.gotRequest.bind(this)} />
+          <a href="/"><SearchButton search={this.gotRequest.bind(this)} /></a>
           <RestaurantList request={this.state.request} />
         </div>
       );
