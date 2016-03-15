@@ -54,8 +54,10 @@ class About extends React.Component {
 		let logo = {
       position: 'fixed',
       top: '30px',
-      left: '35%',
-      height: '250px',
+      left: '0px',
+      right: '0px',
+      width: '450px',
+      margin: 'auto',
       zIndex: '4'
     }
     let mission = {
@@ -87,13 +89,15 @@ class About extends React.Component {
 					<div style={content}>
 						<h1>Our mission</h1>
 						<h2 style={mission}>
-							We're Follow. We're here to connect people. 
+							We're Follow. We're here to connect people through their favorite restaurants.
+							<br/>Because good food brings good people. &#9829;
 						</h2>
 					</div>
 					<h2 onClick={this.toggleAboutPage.bind(this)} style={close}>Close</h2>
 					<img style={logo} src="http://www.tjinauyeung.nl/logolight.png" />
 					<footer style={footer}>
-            <h4>A Hackathon project by Matt & Tjin</h4>
+            <h4>A React.js demo by Matt & <a href="http://www.tjinauyeung.nl" target="_blank">Tjin</a>
+             - visit <a href="http://www.https://github.com/tjinauyeung/connect_app">github</a> for more info</h4>
           </footer>
 				</div>
 			);

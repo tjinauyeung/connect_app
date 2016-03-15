@@ -64,8 +64,10 @@ class FollowApp extends React.Component {
     let logo = {
       position: 'fixed',
       top: '30px',
-      left: '35%',
-      height: '250px',
+      left: '0px',
+      right: '0px',
+      width: '450px',
+      margin: 'auto',
       zIndex: '-1'
     }
     //end styling 

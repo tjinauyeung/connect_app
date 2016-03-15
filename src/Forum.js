@@ -10,34 +10,6 @@ class Forum extends React.Component {
     };
   }
 
-  submitForm(event){
-    event.preventDefault();
-
-    let matt = {
-      name: 'Matt',
-      country: 'Canada',
-      photo: 'http://www.homefacts.com/images/offenders/indiana/thumb/1267401.jpg',
-      user_id: '1'
-    }
-
-    let post = {
-      id: null,
-      description: this.refs.chatarea.value,
-      restaurant_id: 8,
-      user: matt
-    }
-
-    jQuery.ajax ({
-      type: "POST",
-      url: "https://still-retreat-87985.herokuapp.com/restaurants/" + restaurantId + "/posts/",
-      data: JSON.stringify ({
-        review: review
-      }),
-      contentType: "application/json",
-      dataType: "json"
-    })
-  } 
-
 
 
   render(){
@@ -77,7 +49,7 @@ class Forum extends React.Component {
         return <div style={apost} key={post.id}>{post.description}</div>
       }, this)}
         <div style={inputarea}>
-          <form onSubmit={this.submitForm.bind(this)}>
+          <form>
             <textarea ref="chatarea" style={textarea}></textarea>
             <button>Let's meet</button>
           </form>
