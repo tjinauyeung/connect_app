@@ -4,15 +4,16 @@ import About from './About';
 import SearchButton from './SearchButton';
 import RestaurantList from './RestaurantList';
 import jQuery from 'jquery';
-
+import Loader from 'react-loaders';
 
 class FollowApp extends React.Component {
   constructor(){
     super();
     this.state = {
-        request_received: false,
-        request: "",
-        restaurants: []
+      request_received: false,
+      request: "",
+      restaurants: [],
+      isLoading: true
     }
   }
 
@@ -22,9 +23,9 @@ class FollowApp extends React.Component {
     
     jQuery.getJSON("https://still-retreat-87985.herokuapp.com/tags/" + tagId, function(data){
       component.setState({
-        restaurants: data.restaurant
+        restaurants: data.restaurant,
+        isLoading: false
       });
-      console.log(component.state.restaurants);
     });
   }
 
@@ -40,52 +41,28 @@ class FollowApp extends React.Component {
     })
   }
 
-  
   render() {
-
-    //start styling
-  	let container = {
-  		display: 'flex',
-  		height: '100vh',
-  		width: '100vw',
-  		justifyContent: 'center',
-  		alignItems: 'center'
-  	}
-    let invisible = {
-      color: '#FFE6EB'
-    }
-    let text_center = {
-      textAlign: 'center'
-    }
-    let notfoundmessage = {
-      fontFamily: 'helvetica',
-      fontWeight: '100'
-    }
-    let logo = {
-      position: 'fixed',
-      top: '30px',
-      left: '0px',
-      right: '0px',
-      width: '450px',
-      margin: 'auto',
-      zIndex: '-1'
-    }
-    //end styling 
-
 
     //show searchbar if request hasn't been received
     if (this.state.request_received == false) {
       return (
-        <div style={container}>
+        <div className="container">
           <About />
-          <img style={logo} src="http://www.tjinauyeung.nl/logodark.png" />
-          <div style={text_center}>
-            <h2>What mood are you in right now?</h2>
+          <img className="logo" src="http://www.tjinauyeung.nl/logodark.png" />
+          <div className="center--text">
+            <h1>What mood are you in?</h1>
         	  <Search onChange={this.gotRequest.bind(this)} onSave={this.saveRequest.bind(this)} onRequest={this.getList.bind(this)}/>
-            <h4 style={notfoundmessage} id="requestnotfound"><span style={invisible}>.</span></h4>
+            <h4 className="not_found_message" id="requestnotfound"><span className="invisible">.</span></h4>
           </div>
         </div>
       );
+
+    //show loader if ajax call has not received items
+    } else if (this.state.isLoading) {      
+      return (
+        <div className="fullscreen">
+          <div className="loader"></div>
+        </div> )
     
     //show listings after request has been received
     } else if (this.state.restaurants != []) {

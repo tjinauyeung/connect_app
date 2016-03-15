@@ -11,14 +11,16 @@ class Model {
 		function checkRequest(request, onDone) {
 
 			let thai = request.search(/thai/ig);
+			let padthai = request.search(/pad thai/ig);
 			let korean = request.search(/korean/ig);
+			let kimchi = request.search(/kimchi/ig);
 			let steak = request.search(/steak/ig);
 			let spaghetti = request.search(/spaghetti/ig);
 			let surprise = request.search(/surprise/ig);
 
-			if (thai >= 0) {
+			if (thai >= 0 || padthai >= 0 ) {
 				sendRequest("thai", onDone);
-			} else if (korean >= 0) {
+			} else if (korean >= 0 || kimchi >= 0) {
 				sendRequest("korean", onDone);
 			}	else if (steak >= 0) {
 				sendRequest("steak", onDone);

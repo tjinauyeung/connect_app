@@ -97,7 +97,7 @@ class About extends React.Component {
 					<img style={logo} src="http://www.tjinauyeung.nl/logolight.png" />
 					<footer style={footer}>
             <h4>A React.js demo by Matt & <a href="http://www.tjinauyeung.nl" target="_blank">Tjin</a>
-             - visit <a href="http://www.https://github.com/tjinauyeung/connect_app">github</a> for more info</h4>
+             - for more info visit <a href="http://www.https://github.com/tjinauyeung/connect_app">Github</a></h4>
           </footer>
 				</div>
 			);

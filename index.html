@@ -1,35 +1,19 @@
 <!doctype html>
 <html>
   <head>
-    <title>Follow - Meet people in your favourite restaurant</title>
-    <style>
-    	/* normalize */
-    	* {
-    		box-sizing: border-box;
-    	}
-    	body {
-    		margin: 0;
-    		padding: 0;
-    		font-family: Helvetica, Arial, sans-serif;
-    		background: #D9F2FC;
-    	}
-			a, a:visited {
-				color: inherit;
-				text-decoration: underline;
-			}
-    </style>
+	<title>Follow - Meet people in your favourite restaurant</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script src="/static/bundle.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="http://www.tjinauyeung.nl/follow/scripts/typed.js"></script>
-    <script>
-			$(document).ready(function(){
-				$('#userinput').typed({
-        	strings: ["I'm in the mood for some delicious Thai", "I'm thinkin Korean food", "Give me a bloody steak!", "How about some nice Foi Gras?", "I'd like to go to a sushi restaurant", "Surprise me!", "I go crazy for pizza right now"],
-        	typeSpeed: 0 });
-			})
-		</script>
+		<div id="root"></div>
+		<script src="/static/bundle.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="http://www.tjinauyeung.nl/follow/scripts/typed.js"></script>
+		<script>
+				$(document).ready(function(){
+					$('#userinput').typed({
+				strings: ["I'm in the mood for some delicious Thai", "I'm thinkin Korean food", "Give me a bloody steak!", "How about some nice Foi Gras?", "I'd like to go to a sushi restaurant", "Surprise me!", "I go crazy for pizza right now"],
+				typeSpeed: 0 });
+				})
+	</script>
   </body>
 </html>

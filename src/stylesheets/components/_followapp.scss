@@ -1,0 +1,26 @@
+.container {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	justify-content: center;
+	align-items: center;
+}
+
+.invisible {
+	color: $body-background-color;
+}
+
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 0px;
+  right: 0px;
+  width: 450px;
+  margin: auto;
+  z-index: -1;
+}
+
+.not_found_message {
+	font-family: $primary-font;
+	font-weight: $light;
+}
